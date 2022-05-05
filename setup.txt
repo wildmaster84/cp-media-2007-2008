@@ -1,6 +1,6 @@
 &v=1&
 
-&paper=86&
+&paper=2005&
 &penguin=16&
 &puffle=2&
 &igloo=73&
@@ -11,10 +11,10 @@
 &binoculars=1&
 &missions=4&
 &journal=11&
-&crumbs=21&
+&crumbs=40&
 &interface=41&
 &errors=4&
-&join=14&
+&join=291&
 &edit=9&
 &library=6&
 &script=2&
