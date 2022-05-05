@@ -5,7 +5,6 @@
 
 # To-do
 - Convert to 2010
-- Finish cracking chat604.swf
 - Fix server connection issues
 - Fix Registration Button
 
