@@ -15,6 +15,11 @@
 # Missing/Bugged Items
 - phone2.swf
 - edit.php
+- join.php
+- puffle_2.swf
+- map.swf | Outdated
+- member_2.swf
+- member_3.swf
 
 
 
