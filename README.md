@@ -14,7 +14,7 @@
 
 # Missing/Bugged Items
 - phone2.swf
-- edit.php
+- news.php
 - join.php
 - puffle_2.swf
 - map.swf | Outdated
