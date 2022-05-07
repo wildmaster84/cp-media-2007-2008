@@ -7,6 +7,7 @@
 - Convert to 2010
 - Fix server connection issues
 - Fix Registration Button
+- Fix newspaper submit button
 
 
 
