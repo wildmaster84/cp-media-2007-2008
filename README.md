@@ -17,7 +17,6 @@ If you can't create a user, make sure the ID table is AUTO_INCREMENT
 # Missing/Bugged Items
 - phone2.swf
 - news.php
-- join.php
 - puffle_2.swf
 - map.swf | Outdated
 - member_2.swf
