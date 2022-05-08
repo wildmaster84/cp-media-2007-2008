@@ -1,6 +1,6 @@
 <?php
 
-    class Edit {
+    class Login {
 
         const HOST = "localhost";
         const USER = "root";
@@ -11,17 +11,9 @@
 
         function __construct($username, $password) {
             $this->db = new mysqli(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
+
             $this->testConnection();
-			$action = $_POST['Action'];
-			
-			switch($action){
-				case 'Password':
-					$this->passwordReset($username, $password);
-					break;
-				case 'Cancel':
-					$this->cancelMembership($username, $password);
-					break;
-			}
+            $this->login($username, $password);
         }
 
         function testConnection() {
@@ -30,28 +22,18 @@
             }
         }
 
-        function passwordReset($username, $password) {
+        function login($username, $password) {
             $user = $this->getUser($username);
             $this->verifyPassword($password, $user);
-			$escapedUsername = $this->db->real_escape_string($username);
-			$newPassword = password_hash($_POST['NewPassword'], PASSWORD_DEFAULT);
-
-            $statement = $this->db->prepare("UPDATE `users` SET `password` = ? WHERE username = ? LIMIT 1");
-            $statement->bind_param("ss", $newPassword, $escapedUsername);
-            $statement->execute();
-			die("&e=0");
+			$this->isBanned($username);
+            $this->returnUser($user);
         }
-		
-		function cancelMembership($username, $password) {
-            $user = $this->getUser($username);
-            $this->verifyPassword($password, $user);
-			$escapedUsername = $this->db->real_escape_string($username);
-            $statement = $this->db->prepare("UPDATE `users` SET `member` = '0' WHERE username = ? LIMIT 1");
-            $statement->bind_param("s", $escapedUsername);
-            $statement->execute();
-			die("&e=0");
-        }
-		
+		function isBanned($username){
+			$user = $this->getUser($username);
+			if ($user['banned'] == 1) {
+					die("&e=600&em=\n Never");
+				}
+		}
         function getUser($username) {
             $escapedUsername = $this->db->real_escape_string($username);
 
@@ -74,6 +56,36 @@
                 // Incorrect password
                 die("&e=101");
             }
+        }
+		
+        function returnUser($user) {
+            $items = $this->getItems($user);
+            $crumb = $this->getCrumb($user);
+
+            die("&s=0&rt=0&str=0&crumb=" . $crumb  .
+                "&il=" . $items .
+                "&c=" . $user["coins"] .
+                "&bl=" .
+                "&nl=" .
+                "&k1=" . $user["loginKey"] .
+                "&ed=" . "86400" .
+                "&jd=" . "2018-1-1"
+            );
+        }
+
+        function getItems($user) {
+            $items = [];
+
+            $statement = $this->db->prepare("SELECT itemId FROM inventory WHERE userId = ?");
+            $statement->bind_param("s", $user["id"]);
+            $statement->execute();
+            $result = $statement->get_result();
+
+            while ($row = $result->fetch_assoc()) {
+                array_push($items, $row["itemId"]);
+            }
+
+            return implode("|", $items);
         }
 
         function getCrumb($user) {
@@ -99,7 +111,7 @@
 
     }
 
-    New Edit(
+    New Login(
         $_POST["Username"],
         $_POST["Password"]
     );
