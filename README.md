@@ -6,10 +6,9 @@ If you can't create a user, make sure the ID table is AUTO_INCREMENT
 
 
 # To-do
-- Convert to 2010
-- Fix server connection issues
-- Fix Registration Button
+- Convert to 2009
 - Fix newspaper submit button
+- Fix Adopt System
 
 
 
@@ -30,7 +29,7 @@ If you can't create a user, make sure the ID table is AUTO_INCREMENT
 
 # Notes
 To use the register you will need a "Register" server, NOT "World" or "Login".
-Check the wiki for installation setup.
+Check the [wiki](https://github.com/wildmaster84/cp-media-2007-2008/wiki) for installation setup.
 
 Club Penguin Media from 2007-2008.
 It is needed to for example install "Slippers". https://github.com/wizguin/slippers
